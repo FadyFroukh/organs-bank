@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router , Routes , Route} from 'react-router-dom';
+import About from './comps/pages/About/About';
+import Home from './comps/pages/Home/Home';
+import SignIn from "./comps/pages/SignIn/SignIn";
+import SignUp from "./comps/pages/SignUp/SignUp";
+import Contact from "./comps/pages/Contact/Contact";
+import Faq from "./comps/pages/Faq/Faq";
+import Admin from "./comps/pages/Admin/Admin"
+import "../src/scss/utils.css";
+import HiddenMenu from './comps/HiddenMenu';
+import { useState } from 'react';
+import Footer from './comps/Footer';
+import Dashboard from './comps/pages/Dashboard/Dashboard';
+import AdminLogin from './comps/pages/AdminLogin/AdminLogin';
 
 function App() {
+
+  const [click,setClick] = useState(false);
+  const [isLogged,setIsLogged] = useState(false);
+  const [isAdminLogged,setIsAdminLogged] = useState(false);
+
   return (
+    <>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+          <Routes> 
+            <Route path='/' element={<Home click={click} setClick={setClick}/>} />
+            <Route path="/about-us" element={<About click={click} setClick={setClick}/>}/>
+            <Route path="/contact-us" element={<Contact click={click} setClick={setClick}/>}/>
+            <Route path="/faq" element={<Faq click={click} setClick={setClick}/>}/>
+            <Route path="/sign-in" element={<SignIn click={click} setClick={setClick} 
+            isLogged={isLogged} setIsLogged={setIsLogged}/>}/>
+            <Route path="/sign-up" element={<SignUp click={click} setClick={setClick}/>}/>
+            <Route path="/dashboard" element={<Dashboard isLogged={isLogged} setIsLogged={setIsLogged}/>}/>
+            <Route path="/admin-login" element={<AdminLogin isAdminLogged={isAdminLogged} setIsAdminLogged={setIsAdminLogged}/>}/>
+            <Route path="/admin" element={<Admin isAdminLogged={isAdminLogged} setIsAdminLogged={setIsAdminLogged}/>}/>
+          </Routes>
+          {/* <Footer/> */}
+      </Router>
     </div>
+    {
+      click ? <HiddenMenu click={click} setClick={setClick}/> : null
+    }
+    </>
   );
 }
 

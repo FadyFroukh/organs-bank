@@ -1,0 +1,107 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.container{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+.row{
+    display: flex;
+}
+
+.text-center{
+    text-align: center;
+}
+
+
+.form-part{
+    display: flex;
+    margin-bottom: 20px;
+
+    section{
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        width: 100%;
+        input {
+            padding: 10px;
+        }
+        label{
+            margin-bottom: 10px;
+        }
+        select{
+            width: 100%;
+            height: 35px;
+            text-align: center;
+        }
+    }
+}
+
+.error-box , .success-box , .status-box{
+    width: 300px;
+    margin-bottom: 20px;
+    a{
+        color: inherit;
+    }
+}
+
+.tail {
+    margin-bottom: 15px;
+    font-size: 20px;
+    line-height: 1.7;
+    a {
+        color: inherit;
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+    }
+}
+
+@media (max-width:767px){
+    .form-part{
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 10px;
+
+        section{
+            margin-left: 0 !important;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+
+//media queries
+
+@media (min-width:1200px){
+    .container{
+        width: 1170px;
+    }
+}
+
+@media (max-width:350px) and (min-width:767px){
+    .container{
+        width: 320px;
+    }
+}
+
+@media (min-width:768px) and (max-width:991px){
+    .container{
+        width:738px;
+    }
+    
+}
+
+@media (min-width:992px) and (max-width:1199px){
+    .container{
+        width:962px;
+    }
+}
+
+@media (min-width:1200px){
+    .container{
+        width: 1170px;
+    }
+}

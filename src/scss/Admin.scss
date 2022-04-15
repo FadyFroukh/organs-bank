@@ -1,0 +1,61 @@
+.admin-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    form{
+        border: 3px solid #555;
+        padding: 30px;
+        border-radius: 15px;
+        h5{
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-part{
+            section{
+                margin: 0;
+            }
+        }
+        .submit{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.admin-dashboard{
+    display: flex;
+    justify-content: center;
+    .admin-dashboard-data{
+        width: 90%;
+        .admin-date{
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            .admin-name{
+                display: flex;
+                button{
+                    min-width: 20px;
+                    padding: 0;
+                }
+            }
+        }
+        .admin-select{
+            margin: 5px 0;
+        }
+        .table{
+            height: 500px;
+            overflow-y: auto;
+        }
+        .admin-filter{
+
+            .admin-reset{
+                margin: 10px;
+                font-weight: bold;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+    }
+}

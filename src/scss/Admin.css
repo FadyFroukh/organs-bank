@@ -1,0 +1,58 @@
+.admin-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.admin-form form {
+  border: 3px solid #555;
+  padding: 30px;
+  border-radius: 15px;
+}
+.admin-form form h5 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.admin-form form .form-part section {
+  margin: 0;
+}
+.admin-form form .submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-dashboard {
+  display: flex;
+  justify-content: center;
+}
+.admin-dashboard .admin-dashboard-data {
+  width: 90%;
+}
+.admin-dashboard .admin-dashboard-data .admin-date {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.admin-dashboard .admin-dashboard-data .admin-date .admin-name {
+  display: flex;
+}
+.admin-dashboard .admin-dashboard-data .admin-date .admin-name button {
+  min-width: 20px;
+  padding: 0;
+}
+.admin-dashboard .admin-dashboard-data .admin-select {
+  margin: 5px 0;
+}
+.admin-dashboard .admin-dashboard-data .table {
+  height: 500px;
+  overflow-y: auto;
+}
+.admin-dashboard .admin-dashboard-data .admin-filter .admin-reset {
+  margin: 10px;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=Admin.css.map */

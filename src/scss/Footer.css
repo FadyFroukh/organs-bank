@@ -1,0 +1,11 @@
+footer {
+  background-color: #0e0e0e;
+  color: #fff;
+  padding: 10px;
+}
+footer .container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*# sourceMappingURL=Footer.css.map */

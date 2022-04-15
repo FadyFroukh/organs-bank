@@ -1,0 +1,11 @@
+.sign-in h2 {
+  margin: 25px 0;
+}
+.sign-in .sign-in-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=SignIn.css.map */

@@ -1,0 +1,180 @@
+.dashboard{
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+    .dashboard-profile{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        background-color: rgba(255,255,255,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .profile-items{
+            width: 70%;
+            height: 70%;
+            background-color: rgba(200,200,200,.8);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            header{
+                display: flex;
+                justify-content: space-between;
+                font-size: 30px;
+                p{
+                    margin: 0;
+                    font-weight: bold;
+                }
+                svg{
+                    cursor: pointer;
+                }
+            }
+            .profile-data{
+                .profile-data-section{
+                    display: flex;
+                    justify-content: space-between;
+                    height: 100px;
+                    .profile-data-field{
+                        flex: 1;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .dashboard-data{
+        width: 90%;
+        padding: 7px;
+        margin-right: 10px;
+        .date-name{
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            .name{
+                display: flex;
+                div{
+                    padding: 0;
+                    button{
+                        padding: 0;
+                        min-width: 30px;
+                    }
+                }
+            }
+        }
+
+        #demo-positioned-menu{
+            svg{
+                margin-bottom: 5px;
+            }
+        }
+        
+        .dashboard-accepted{
+
+            .box{
+                display: flex;
+                justify-content: space-between;
+                border: 4px solid #aaa;
+                border-radius: 20px;
+                padding: 12px;
+                margin-bottom: 15px;
+            
+            .welcome-box{
+                display: flex;
+                flex-direction: column;
+                line-height: 2;
+                h4 , h6 {
+                    margin-bottom: 10px;
+                }
+                
+                .boxes , .patient, .donor{
+                    display: flex;
+                    font-weight: bold;
+                    margin-top: 15px;
+                    div{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .donor{
+                        margin-right: 10px;
+                    }
+                }
+
+                
+            }
+
+            .personal-data{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: center;
+            }
+        }
+
+        
+    }
+
+        .dashboard-form{
+            .header{
+                margin-bottom: 30px;
+                h4,p{
+                    margin-bottom: 10px;
+                }
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;  
+                
+                input{
+                    width: 300px;
+                }
+            }
+        }
+
+        .organ-pending{
+            .choose-organ{
+                margin-top: 10px;
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                width: 200px;
+                button{
+                    margin-left: 10px;
+                    width:200px;
+                }
+            }
+        }
+
+        .organ-choosen{
+            h5{
+                margin-bottom: 15px;
+            }
+            .organs-search{
+                display: flex;
+                flex-direction: column;
+               button{
+                   width: 200px;
+                   margin-left: 10px;
+                   margin-bottom: 10px;
+               }
+            }
+            .organs-table{
+                max-height: 500px;
+                overflow-y: auto;
+            }
+        }
+
+    }
+
+
+
+}

@@ -1,0 +1,23 @@
+.home-page {
+  height: 85vh;
+  background: url(../images/home-page.jpg) no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.home-page .home-page-overlay {
+  width: 100%;
+  height: 85vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-page .home-page-overlay .text {
+  font-size: 35px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/*# sourceMappingURL=Home.css.map */

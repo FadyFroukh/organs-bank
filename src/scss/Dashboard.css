@@ -1,0 +1,150 @@
+.dashboard {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard .dashboard-profile {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard .dashboard-profile .profile-items {
+  width: 70%;
+  height: 70%;
+  background-color: rgba(200, 200, 200, 0.8);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.dashboard .dashboard-profile .profile-items header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+}
+.dashboard .dashboard-profile .profile-items header p {
+  margin: 0;
+  font-weight: bold;
+}
+.dashboard .dashboard-profile .profile-items header svg {
+  cursor: pointer;
+}
+.dashboard .dashboard-profile .profile-items .profile-data .profile-data-section {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+}
+.dashboard .dashboard-profile .profile-items .profile-data .profile-data-section .profile-data-field {
+  flex: 1;
+  text-align: center;
+}
+.dashboard .dashboard-data {
+  width: 90%;
+  padding: 7px;
+  margin-right: 10px;
+}
+.dashboard .dashboard-data .date-name {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.dashboard .dashboard-data .date-name .name {
+  display: flex;
+}
+.dashboard .dashboard-data .date-name .name div {
+  padding: 0;
+}
+.dashboard .dashboard-data .date-name .name div button {
+  padding: 0;
+  min-width: 30px;
+}
+.dashboard .dashboard-data #demo-positioned-menu svg {
+  margin-bottom: 5px;
+}
+.dashboard .dashboard-data .dashboard-accepted .box {
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid #aaa;
+  border-radius: 20px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+.dashboard .dashboard-data .dashboard-accepted .box .welcome-box {
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+}
+.dashboard .dashboard-data .dashboard-accepted .box .welcome-box h4, .dashboard .dashboard-data .dashboard-accepted .box .welcome-box h6 {
+  margin-bottom: 10px;
+}
+.dashboard .dashboard-data .dashboard-accepted .box .welcome-box .boxes, .dashboard .dashboard-data .dashboard-accepted .box .welcome-box .patient, .dashboard .dashboard-data .dashboard-accepted .box .welcome-box .donor {
+  display: flex;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.dashboard .dashboard-data .dashboard-accepted .box .welcome-box .boxes div, .dashboard .dashboard-data .dashboard-accepted .box .welcome-box .patient div, .dashboard .dashboard-data .dashboard-accepted .box .welcome-box .donor div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard .dashboard-data .dashboard-accepted .box .welcome-box .boxes .donor, .dashboard .dashboard-data .dashboard-accepted .box .welcome-box .patient .donor, .dashboard .dashboard-data .dashboard-accepted .box .welcome-box .donor .donor {
+  margin-right: 10px;
+}
+.dashboard .dashboard-data .dashboard-accepted .box .personal-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.dashboard .dashboard-data .dashboard-form .header {
+  margin-bottom: 30px;
+}
+.dashboard .dashboard-data .dashboard-form .header h4, .dashboard .dashboard-data .dashboard-form .header p {
+  margin-bottom: 10px;
+}
+.dashboard .dashboard-data .dashboard-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard .dashboard-data .dashboard-form form input {
+  width: 300px;
+}
+.dashboard .dashboard-data .organ-pending .choose-organ {
+  margin-top: 10px;
+}
+.dashboard .dashboard-data .organ-pending form {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+.dashboard .dashboard-data .organ-pending form button {
+  margin-left: 10px;
+  width: 200px;
+}
+.dashboard .dashboard-data .organ-choosen h5 {
+  margin-bottom: 15px;
+}
+.dashboard .dashboard-data .organ-choosen .organs-search {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard .dashboard-data .organ-choosen .organs-search button {
+  width: 200px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.dashboard .dashboard-data .organ-choosen .organs-table {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/*# sourceMappingURL=Dashboard.css.map */
