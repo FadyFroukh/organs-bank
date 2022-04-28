@@ -4,7 +4,7 @@ import Header from "../Header";
 function Faq({click,setClick}){
 
     useEffect(()=>{
-        document.title = "Body Parts System - FAQ"
+        document.title = "Human Organs System - FAQ"
     },[])
 
     return(

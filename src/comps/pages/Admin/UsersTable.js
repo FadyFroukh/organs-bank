@@ -1,11 +1,10 @@
-import { Delete, Edit } from "@mui/icons-material";
-import { FormControl, Input, InputLabel, MenuItem, Paper, Select, Tab, Table, TableBody, TableCell, 
+import { FormControl,  InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, 
     TableContainer, TableHead, TableRow }
  from "@mui/material";
-import { useEffect, useState } from "react";
-function UsersTable({users,usersSort,setUsersSort}){
-
-    const [usersFilter,setUsersFilter] = useState(users);
+import { useEffect } from "react";
+import DeleteCell from "./DeleteCell";
+import EditCell from "./EditCell";
+function UsersTable({users,usersSort,setUsersSort,setError,setErrorMsg,usersFilter,setUsersFilter,setShow,setInfo}){
 
     useEffect(()=>{
         if(usersSort === ""){
@@ -34,7 +33,7 @@ function UsersTable({users,usersSort,setUsersSort}){
         else if (usersSort === 50){
             setUsersFilter(users.filter(user=>user.rule == 2));
         }
-    },[usersSort])
+    },[usersSort,users])
 
     return(
         <>
@@ -52,14 +51,7 @@ function UsersTable({users,usersSort,setUsersSort}){
                 <MenuItem value={50}>Rule : Donor</MenuItem>
             </Select>
         </FormControl>
-        {/* <div className="admin-search">
-            <InputLabel htmlFor="search">Search By ID</InputLabel>
-            <Input
-                name="search"
-                value={search}
-                onChange={handleIdSearch}
-            />
-        </div> */}
+        {/* Add Search Here */}
         <div className="admin-reset">
             <span onClick={()=>setUsersSort("")}>Reset Filter</span>
         </div>
@@ -114,12 +106,13 @@ function UsersTable({users,usersSort,setUsersSort}){
                                             user.rule === 2 ? "Donor" : null
                                         }
                                         </TableCell>
-                                        <TableCell><Delete sx={{color:"#EA2027",cursor:"pointer"}}/></TableCell>
-                                        <TableCell><Edit sx={{color:"#05c46b",cursor:"pointer"}}/></TableCell>
+                                        <DeleteCell endPoint="users" id={user._id} setError={setError} 
+                                        setErrorMsg={setErrorMsg} setItemsFilter={setUsersFilter} items={users}/>
+                                        <EditCell item={user} setShow={setShow} setInfo={setInfo}/>
                                     </TableRow>
                                 ))
                                  : <TableRow><TableCell>No Data</TableCell></TableRow> :
-                                 <TableRow><TableCell>Loading Table</TableCell></TableRow>
+                                 <TableRow><TableCell>No Data</TableCell></TableRow>
                               
                             }
                         </TableBody>

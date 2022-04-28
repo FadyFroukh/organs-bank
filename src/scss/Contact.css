@@ -1,0 +1,55 @@
+.contact {
+  position: relative;
+}
+.contact .loading {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.contact .contact-us .contact-body {
+  min-height: 100vh;
+}
+.contact .contact-us .contact-body .contact-header h3 {
+  margin-bottom: 10px;
+}
+.contact .contact-us .contact-body .contact-header p {
+  line-height: 1.8;
+  color: #222333;
+}
+.contact .contact-us .contact-body .contact-header p a {
+  color: #000;
+  font-weight: bold;
+  margin: 0 5px;
+}
+.contact .contact-us .contact-body .contact-methods p {
+  color: #222333;
+}
+.contact .contact-us .contact-body .contact-methods .socials {
+  display: flex;
+}
+.contact .contact-us .contact-body .contact-methods .socials .icons {
+  margin-left: 10px;
+}
+.contact .contact-us .contact-body .contact-methods .socials .icons a {
+  margin-right: 4px;
+}
+.contact .contact-us .contact-body .contact-question h4 {
+  margin-bottom: 10px;
+}
+.contact .contact-us .contact-body .contact-question .contact-form {
+  display: flex;
+  justify-content: center;
+}
+.contact .contact-us .contact-body .contact-question .contact-form .button-part {
+  display: flex;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=Contact.css.map */

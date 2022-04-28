@@ -9,8 +9,12 @@ const port = 4000 || process.env.PORT;
 const User = require("./models/User");
 const Hla = require("./models/Hla");
 const Organ = require("./models/Organ");
+const Question = require("./models/Question");
+
 
 const ObjectId = mongo.ObjectId;
+const multer = require('multer');
+
 
 const url = "mongodb+srv://Fadi:12345@body-parts.aovk2.mongodb.net/test";
 
@@ -20,6 +24,18 @@ app.use(express.json());
 app.use(cors({
   origin:"*"
 }))
+
+const storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, 'uploads')
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, `${file.originalname}`)
+    }
+  })
+let upload = multer({ dest: 'uploads/' })
+
+
 
 app.get("/",(req,res)=>{
     res.json({
@@ -72,22 +88,12 @@ app.post("/users",(req,res)=>{
         var dbo = db.db("body-parts");
         dbo.collection("users").insertOne(user,function(err,result){
             if (err) throw err;
+            console.log(result);
             res.send(result);
             db.close();
         })
     });
-})
-
-app.get("/hla/:id",(req,res)=>{
-    mongoClient.connect(url,function(err,db){
-        if (err) throw err;
-        var dbo = db.db("body-parts");
-        dbo.collection("hla").findOne({userId:req.params.id},function(err,result){
-            if (err) throw err;
-            res.send(result);
-            db.close();
-        })
-    })
+    
 })
 
 app.put("/users",(req,res)=>{
@@ -97,12 +103,39 @@ app.put("/users",(req,res)=>{
         dbo.collection("users").updateOne({"_id":ObjectId(req.body.id)},{$set:{
             "rule":req.body.rule
         }}).then(result=>{
-            console.log(result);
+            console.log(req.body.rule);
+            res.send(result);
         }).catch(err=>{
             console.log("Update Failed");
         })
     })
 })
+
+app.put("/users-data",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("users").updateOne({"_id":ObjectId(req.body._id)},{$set:{
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            phone:req.body.phone,
+            address:req.body.address,
+            email:req.body.email,
+            sex:req.body.sex,
+            age:req.body.age,
+            id:req.body.id,
+            status:req.body.status,
+            rule:req.body.rule,
+            password:req.body.password
+        }}).then(result=>{
+            console.log(result.matchedCount);
+            res.send(result);
+        }).catch(err=>{
+            console.log("Update Failed");
+        })
+    })
+})
+
 
 app.post("/admin-login",(req,res)=>{
     mongoClient.connect(url,function(err,db){
@@ -119,14 +152,26 @@ app.post("/admin-login",(req,res)=>{
     })
 })
 
-app.post("/login",(req,res)=>{
+app.delete("/users/:id",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("users").findOneAndDelete({"_id":ObjectId(req.params.id)},function(err,result){
+            if(err) throw err;
+            console.log(req.params.id);
+            res.send(result);
+            db.close();
+        })
+    })
+})
+
+
+app.get("/login",(req,res)=>{
     mongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("body-parts");
         dbo.collection("users").find({
-            email:req.body.email,
-            password:req.body.password,
-            id:req.body.id
+            email:req.query.email
         }).toArray(function(err, result) {
             if (err) throw err;
             res.send(result);
@@ -134,6 +179,9 @@ app.post("/login",(req,res)=>{
         });
     }); 
 })
+
+
+
 
 //Hla Endpoints
 
@@ -149,7 +197,7 @@ app.get("/hla",(req,res)=>{
     })
 })
 
-app.post("/hla",(req,res)=>{
+app.post("/hla",upload.single("file"),(req,res)=>{
 
     const hla = new Hla({
         userId:req.body.userId,
@@ -158,17 +206,61 @@ app.post("/hla",(req,res)=>{
         status:req.body.status,
         file:req.body.file
     })
+
     mongoClient.connect(url,function(err,db){
         if (err) throw err;
         var dbo = db.db("body-parts");
         dbo.collection("hla").insertOne(hla,function(err,result){
             if (err) throw err;
+            console.log(result);
             res.send(result);
             db.close();
         })
     });
 })
 
+app.put("/hla",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("hla").updateOne({"_id":ObjectId(req.body._id)},{$set:{
+            first:req.body.first,
+            second:req.body.second,
+            status:req.body.status
+        }}).then(result=>{
+            console.log(result.matchedCount);
+            res.send(result);
+        }).catch(err=>{
+            console.log("Update Failed");
+        })
+    })
+})
+
+app.get("/hla/:id",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if (err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("hla").findOne({userId:req.params.id},function(err,result){
+            if (err) throw err;
+            console.log(result);
+            res.send(result);
+            db.close();
+        })
+    })
+})
+
+app.delete("/hla/:id",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("hla").findOneAndDelete({"_id":ObjectId(req.params.id)},function(err,result){
+            if(err) throw err;
+            console.log(req.params.id);
+            res.send(result);
+            db.close();
+        })
+    })
+})
 
 
 
@@ -212,12 +304,76 @@ app.post("/organs",(req,res)=>{
         var dbo = db.db("body-parts");
         dbo.collection("organs").insertOne(organ,function(err,result){
             if(err) throw err;
+            console.log(result);
             res.send(result);
-            db.close
+            db.close();
         })
     })
 })
 
+app.put("/organs",function(req,res){
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("organs").updateOne({"_id":ObjectId(req.body._id)},{$set:{
+            organName:req.body.organName,
+            rule:req.body.rule
+        }}).then(result=>{
+            console.log(result.matchedCount);
+            res.send(result);
+        }).catch(err=>{
+            console.log("Update Failed");
+        })
+    })
+})
+
+app.delete("/organs/:id",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("organs").findOneAndDelete({"_id":ObjectId(req.params.id)},function(err,result){
+            if(err) throw err;
+            res.send(result);
+            db.close();
+        })
+    })
+})
+
+
+//Question Endpoints
+
+app.get("/question",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if (err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("questions").find({}).toArray(function(err,result){
+            if (err) throw err;
+            res.send(result);
+            db.close();
+        })
+    })
+})
+
+app.post("/question",(req,res)=>{
+    const question = new Question({
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
+        email:req.body.email,
+        phone:req.body.phone,
+        messageTopic:req.body.messageTopic,
+        messageBody:req.body.messageBody
+    })
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("questions").insertOne(question,function(err,result){
+            if(err) throw err;
+            console.log(result);
+            res.send(result);
+            db.close();
+        })
+    })
+})
 
 
 app.listen(port,()=>{

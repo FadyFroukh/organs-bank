@@ -1,13 +1,13 @@
-import { Delete, Edit } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import DeleteCell from "./DeleteCell";
+import EditCell from "./EditCell";
 const { TableContainer, Table, TableHead, TableRow, 
-    TableCell, TableBody, Paper, FormControl, InputLabel, Select, MenuItem 
+    TableCell, TableBody, Paper, FormControl, InputLabel, Select, MenuItem ,
 } = require("@mui/material");
 
 
-function OrgansTable({organs,organsSort,setOrgansSort}){
+function OrgansTable({organs,organsSort,setOrgansSort,setError,setErrorMsg,organsFilter,setOrgansFilter,setShow,setInfo}){
 
-    const [organsFilter,setOrgansFilter] = useState(organs);
 
     useEffect(()=>{
         if(organsSort === 0){
@@ -35,7 +35,7 @@ function OrgansTable({organs,organsSort,setOrgansSort}){
         else{
             setOrgansFilter(organs);
         }
-    },[organsSort])
+    },[organsSort,organs])
 
     return(
         <>
@@ -57,16 +57,17 @@ function OrgansTable({organs,organsSort,setOrgansSort}){
                 <span onClick={()=>setOrgansSort("")}>Reset Filter</span>
             </div>
        </div>
-       <TableContainer component={Paper}>
+       <div className="organs-table table">
+            <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
                         <TableRow>
-                           <TableCell>Organ ID</TableCell>
-                           <TableCell>User ID</TableCell>
-                           <TableCell>Organ Name</TableCell>
-                           <TableCell>User Rule</TableCell>
-                           <TableCell>Delete</TableCell>
-                           <TableCell>Edit</TableCell>
+                        <TableCell>Organ ID</TableCell>
+                        <TableCell>User ID</TableCell>
+                        <TableCell>Organ Name</TableCell>
+                        <TableCell>User Rule</TableCell>
+                        <TableCell>Delete</TableCell>
+                        <TableCell>Edit</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
@@ -80,16 +81,17 @@ function OrgansTable({organs,organsSort,setOrgansSort}){
                                         <TableCell>
                                             {organ.rule === 0 ? "Not Known Yet" : organ.rule === 1 ? "Patient" : organ.rule === 2 ? "Donor" : null} 
                                         </TableCell>
-                                        <TableCell><Delete sx={{color:"#EA2027",cursor:"pointer"}}/></TableCell>
-                                        <TableCell><Edit sx={{color:"#05c46b",cursor:"pointer"}}/></TableCell>
+                                        <DeleteCell endPoint="organs" id={organ._id} setError={setError} 
+                                        setErrorMsg={setErrorMsg} setItemsFilter={setOrgansFilter} items={organs}/>
+                                        <EditCell item={organ} setShow={setShow} setInfo={setInfo}/>
                                     </TableRow>
                                 )) : <TableRow><TableCell>No Data</TableCell></TableRow> : 
-                                <TableRow><TableCell>Loading Table</TableCell></TableRow> 
+                                <TableRow><TableCell>No Data</TableCell></TableRow> 
                             }
                         </TableBody>
                     </Table>
-            </TableContainer>        
-
+                </TableContainer>    
+            </div>    
        </>
     );
 }

@@ -12,7 +12,7 @@ function AdminLogin({isAdminLogged,setIsAdminLogged}){
     const [errorMsg,setErrorMsg] = useState("");
 
     useEffect(()=>{
-        document.title = "Body Parts System - Admin Login"
+        document.title = "Human Organs System - Admin Login"
         var isLogin = localStorage.getItem("isAdminLogged");
         if(isLogin){
         setIsAdminLogged(true);

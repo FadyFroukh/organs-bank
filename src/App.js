@@ -9,7 +9,6 @@ import Admin from "./comps/pages/Admin/Admin"
 import "../src/scss/utils.css";
 import HiddenMenu from './comps/HiddenMenu';
 import { useState } from 'react';
-import Footer from './comps/Footer';
 import Dashboard from './comps/pages/Dashboard/Dashboard';
 import AdminLogin from './comps/pages/AdminLogin/AdminLogin';
 
@@ -35,12 +34,12 @@ function App() {
             <Route path="/admin-login" element={<AdminLogin isAdminLogged={isAdminLogged} setIsAdminLogged={setIsAdminLogged}/>}/>
             <Route path="/admin" element={<Admin isAdminLogged={isAdminLogged} setIsAdminLogged={setIsAdminLogged}/>}/>
           </Routes>
-          {/* <Footer/> */}
       </Router>
     </div>
     {
       click ? <HiddenMenu click={click} setClick={setClick}/> : null
     }
+  
     </>
   );
 }

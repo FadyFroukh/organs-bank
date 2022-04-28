@@ -1,7 +1,10 @@
-.sign-in h2 {
+.sign-in-page {
+  min-height: 100vh;
+}
+.sign-in-page .sign-in h2 {
   margin: 25px 0;
 }
-.sign-in .sign-in-form {
+.sign-in-page .sign-in .sign-in-form {
   display: flex;
   justify-content: center;
   align-items: center;

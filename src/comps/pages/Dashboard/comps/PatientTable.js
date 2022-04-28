@@ -1,4 +1,4 @@
-import { TableCell, TableRow, Typography } from "@mui/material";
+import { TableCell, TableRow } from "@mui/material";
 import { useEffect, useState } from "react";
 
 function PatientTable({hla,searchOrgans}){
@@ -12,7 +12,7 @@ function PatientTable({hla,searchOrgans}){
 
 
     return(
-        patientOrgans.length === 0 ? <Typography paragraph className="text-center">No Available Data</Typography> :
+        patientOrgans.length === 0 ? <TableRow><TableCell>No Data</TableCell></TableRow> :
         patientOrgans?.map((organ)=>(
             <TableRow key={organ._id}>
             <TableCell>{organ._id}</TableCell>

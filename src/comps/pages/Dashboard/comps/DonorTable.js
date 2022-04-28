@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const { TableRow, TableCell, Typography } = require("@mui/material");
+const { TableRow, TableCell } = require("@mui/material");
 
 function DonorTable({hla,searchOrgans}){
 
@@ -11,7 +11,7 @@ function DonorTable({hla,searchOrgans}){
     },[searchOrgans])
 
     return(
-       donorOrgans.length === 0 ? <Typography paragraph className="text-center">No Available Data</Typography> : 
+       donorOrgans.length === 0 ? <TableRow><TableCell>No Data</TableCell></TableRow> : 
         donorOrgans?.map((organ)=>(
             <TableRow key={organ._id}>
             <TableCell>{organ._id}</TableCell>

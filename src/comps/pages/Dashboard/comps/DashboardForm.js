@@ -6,18 +6,23 @@ function DashboardForm({setShow,setError}){
 
     const [first,setFirst] = useState("");
     const [second,setSecond] = useState("");
-    const [file,setFile] = useState([""],"");
+    const [file,setFile] = useState(null);
 
-    const handleForm = (e)=>{
+    const onFileChange = (e)=>{
+        setFile(e.target.files[0]);
+    }
+
+
+    const onFileUpload = (e)=>{
         e.preventDefault();
+        const formData = new FormData();
+        formData.append("file",file);
+        console.log(file);
 
-        const data = new FormData();
-        data.append("file",file);
-        
         axios.post("http://localhost:4000/hla",{
             first,
             second,
-            file:data.file,
+            file:formData,
             status:0,
             userId:JSON.parse(localStorage.getItem("user"))._id
         }).then(res=>{
@@ -25,6 +30,7 @@ function DashboardForm({setShow,setError}){
         }).catch(err=>{
             setError(true);
         })
+
     }
 
     return(
@@ -33,7 +39,7 @@ function DashboardForm({setShow,setError}){
                 <Typography variant="h4">Welcome for the First Time</Typography>
                 <Typography paragraph>Please Fill the Following Form Concerning your HLA Results</Typography>
             </div>
-            <form onSubmit={handleForm}>
+            <form method="POST" encType="multipart/form-data">
                 <div className="form-part">
                     <section>
                         <InputLabel htmlFor="first">HLA-B*</InputLabel>
@@ -68,14 +74,13 @@ function DashboardForm({setShow,setError}){
                             type="file"
                             required
                             accept="application/pdf"
-                            // value={file}
-                            // onChange={(e)=>setFile(e.target.files[0])}
+                            onChange={onFileChange}
                         />
                     </section>
                 </div>
                 <div className="form-part">
                     <section>
-                        <Button type="submit" variant="contained" size="large">Submit Data</Button>
+                        <Button type="submit" variant="contained" size="large" onClick={onFileUpload}>Submit Data</Button>
                     </section>
                 </div>
             </form>

@@ -1,12 +1,12 @@
-import { Delete, Edit } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import DeleteCell from "./DeleteCell";
+import EditCell from "./EditCell";
 const { TableContainer, Table, TableHead, TableRow, 
     TableCell, TableBody, Paper, FormControl, InputLabel, Select, MenuItem 
 } = require("@mui/material");
 
-function HlaTable({hla,hlaSort,setHlaSort}){
+function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,setError,setShow,setInfo}){
 
-    const [hlaFilter,setHlaFilter] = useState(hla);
 
     useEffect(()=>{
         if(hlaSort === 0){
@@ -18,7 +18,7 @@ function HlaTable({hla,hlaSort,setHlaSort}){
         }else{
             setHlaFilter(hla);
         }
-    },[hlaSort])
+    },[hlaSort,hla])
 
 
     return(
@@ -61,11 +61,12 @@ function HlaTable({hla,hlaSort,setHlaSort}){
                                     <TableCell>
                                         {item.status === 0 ? "Pending" : item.status === 1 ? "Denied" : item.status === 2 ? "Accepted" : null} 
                                     </TableCell>
-                                    <TableCell><Delete sx={{color:"#EA2027",cursor:"pointer"}}/></TableCell>
-                                    <TableCell><Edit sx={{color:"#05c46b",cursor:"pointer"}}/></TableCell>
+                                    <DeleteCell endPoint="hla" id={item._id} setError={setError} 
+                                        setErrorMsg={setErrorMsg} setItemsFilter={setHlaFilter} items={hla}/>
+                                    <EditCell item={item} setShow={setShow} setInfo={setInfo}/>
                                 </TableRow>
                             )) : <TableRow><TableCell>No Data</TableCell></TableRow> : 
-                            <TableRow><TableCell>Loading Table</TableCell></TableRow> 
+                            <TableRow><TableCell>No Data</TableCell></TableRow> 
                         }
                         </TableBody>
                     </Table>

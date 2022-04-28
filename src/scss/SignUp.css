@@ -1,7 +1,10 @@
-.sign-up h2 {
+.sign-up-page {
+  min-height: 100vh;
+}
+.sign-up-page .sign-up h2 {
   margin: 25px 0;
 }
-.sign-up .sign-up-form {
+.sign-up-page .sign-up .sign-up-form {
   display: flex;
   flex-direction: column;
   align-items: center;

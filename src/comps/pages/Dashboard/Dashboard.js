@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Dashboard({isLogged,setIsLogged}){
 
-    const [showProfile,setShowProfile] = useState(true);
+    const [showProfile,setShowProfile] = useState(false);
     const [user,setUser] = useState({});
     const [error,setError] = useState(false);
 
@@ -23,7 +23,7 @@ function Dashboard({isLogged,setIsLogged}){
 
 
     useEffect(()=>{
-        document.title = "Body Parts System - Dashboard"
+        document.title = "Human Organs System - Dashboard"
         var isLogin = localStorage.getItem("isLogged");
         if(isLogin){
             setIsLogged(true);
