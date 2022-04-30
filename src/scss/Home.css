@@ -38,13 +38,18 @@
 }
 .home .how .how-slides .slides .slide {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.home .how .how-slides .slides .slide h4 {
+.home .how .how-slides .slides .slide div {
+  display: flex;
+  margin-bottom: 10px;
+}
+.home .how .how-slides .slides .slide div h4 {
   margin-right: 10px;
 }
-.home .how .how-slides .slides .slide svg {
+.home .how .how-slides .slides .slide div svg {
   margin-top: 4px;
   font-size: 2.125rem;
 }

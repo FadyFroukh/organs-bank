@@ -14,27 +14,42 @@ import AddUser from "./AddUser";
 import AddHla from "./AddHla";
 import AddOrgan from "./AddOrgan";
 import Loading from "./Loading";
+import QuestionsTable from "./QuestionsTable";
 
 function Admin({isAdminLogged,setIsAdminLogged}){
 
     const [info,setInfo] = useState({});
+
     const [organsFilter,setOrgansFilter] = useState([]);
     const [usersFilter,setUsersFilter] = useState([]);
     const [hlaFilter,setHlaFilter] = useState();
+    const [questionsFilter,setQuestionsFilter] = useState([]);
+
+
     const [admin,setAdmin] = useState({});
-    const [data,setData] = useState("users");
+
     const [hla,setHla] = useState([]);
     const [hlaSort,setHlaSort] = useState("");
+
     const [users,setUsers] = useState([]);
     const [usersSort,setUsersSort] = useState("");
+
     const [organs,setOrgans] = useState([]);
     const [organsSort,setOrgansSort] = useState("");
+
+    const [questions,setQuestions] = useState([]);
+    const [questionsSort,setQuestionsSort] = useState("");
+
     const [error,setError] = useState(false);
     const [errorMsg,setErrorMsg] = useState("");
+
     const [showUserEdit,setShowUserEdit] = useState(false);
     const [showHlaEdit,setShowHlaEdit] = useState(false);
     const [showOrganEdit,setShowOrganEdit] = useState(false);
+
     const [loading,setLoading] = useState(false);
+    const [data,setData] = useState("users");
+
     
     useEffect(()=>{
         document.title = "Human Organs System - Admin"
@@ -83,6 +98,17 @@ function Admin({isAdminLogged,setIsAdminLogged}){
         })
         
     },[organs,error,organsFilter])
+
+    useEffect(()=>{
+        axios.get("http://localhost:4000/question").then(res=>{
+            setError(false);
+            setQuestions(res.data);
+            setQuestionsFilter(res.data);
+        }).catch(err=>{
+            setError(true);
+            setErrorMsg("Connection Error");
+        })
+    },[error,questions,questionsFilter])
     
     
 
@@ -96,16 +122,21 @@ function Admin({isAdminLogged,setIsAdminLogged}){
                     data === "users" ? <UsersTable users={users} usersSort={usersSort}
                     setUsersSort={setUsersSort} setError={setError} setErrorMsg={setErrorMsg}
                     usersFilter={usersFilter} setUsersFilter={setUsersFilter} setShow={setShowUserEdit}
-                    setInfo={setInfo}
+                    setInfo={setInfo} setLoading={setLoading}
                     /> : 
                     data === "hla" ? <HlaTable hla={hla} hlaSort={hlaSort} setHlaSort={setHlaSort}
                         setError={setError} setErrorMsg={setErrorMsg} hlaFilter={hlaFilter} setHlaFilter={setHlaFilter}
-                        setShow={setShowHlaEdit} setInfo={setInfo}
+                        setShow={setShowHlaEdit} setInfo={setInfo} setLoading={setLoading}
                     /> : 
                     data === "organs" ? <OrgansTable organs={organs} organsSort={organsSort} setOrgansSort={setOrgansSort}
                         setError={setError} setErrorMsg={setErrorMsg} organsFilter={organsFilter} setOrgansFilter={setOrgansFilter}
-                        setShow={setShowOrganEdit} setInfo={setInfo}
-                    /> : null
+                        setShow={setShowOrganEdit} setInfo={setInfo} setLoading={setLoading}
+                    /> : data === "questions" ? <QuestionsTable questions={questions} questionsSort={questionsSort} 
+                    setQuestionsSort={setQuestionsSort} setError={setError} setErrorMsg={setErrorMsg} questionsFilter={questionsFilter}
+                    setQuestionsFilter={setQuestionsFilter} setLoading={setLoading}
+                    
+                    /> 
+                    : null
                 }
 
                 {

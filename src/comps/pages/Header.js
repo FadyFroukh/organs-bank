@@ -2,6 +2,7 @@ import "../../scss/Header.css";
 import Container from '../Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
+import Logo from "../../images/logo.png"
 function Header({click,setClick}){
 
     const handleClick = ()=>{
@@ -12,7 +13,9 @@ function Header({click,setClick}){
         <Container>
             <header>
                 <div className="logo">
-                    <Link to="/">Logo Here</Link>
+                    <Link to="/">
+                        <img src={Logo} alt="Logo"/>
+                    </Link>
                 </div>
                 <div className="header-menu">
                     <Link to="/faq">FAQ</Link>

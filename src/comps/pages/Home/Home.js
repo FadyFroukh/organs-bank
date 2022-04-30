@@ -35,12 +35,15 @@ function Home({click,setClick}){
         </main>
         <div className="how">
             <Container>
-                <Typography variant="h4">How does it work?</Typography>
+                <Typography variant="h4" className="text-center">How does it work?</Typography>
                 <div className="how-slides">
                     <div className="slides">
                         <div className="slide">
-                            <Typography variant="h4">Create an Account</Typography>
-                            <PersonAddIcon/>
+                            <div>
+                                <Typography variant="h4">Create an Account</Typography>
+                                <PersonAddIcon/>
+                            </div>
+                            <Button variant="contained" href="/sign-up">Get Started</Button>
                         </div>
                         <div className="slide">
                             <img src={how1}/>
@@ -51,14 +54,20 @@ function Home({click,setClick}){
                             <img src={how2}/>
                         </div>
                         <div className="slide">
-                            <Typography variant="h4">Add HLA Data</Typography>
-                            <FingerprintIcon/>
+                            <div>
+                                <Typography variant="h4">Add HLA Data</Typography>
+                                <FingerprintIcon/>
+                            </div>
+                            <Typography paragraph>Using the HLA Form after signing-up</Typography>
                         </div>
                     </div>
                     <div className="slides">
                         <div className="slide">
-                            <Typography variant="h4">Choose a Rule</Typography>
-                            <AltRouteIcon/>
+                            <div>
+                                <Typography variant="h4">Choose a Rule</Typography>
+                                <AltRouteIcon/>
+                            </div>
+                            <Typography paragraph>Are You A Donor or a Patient?</Typography>
                         </div>
                         <div className="slide">
                             <img src={how3}/>
@@ -69,14 +78,20 @@ function Home({click,setClick}){
                             <img src={how4}/>
                         </div>
                         <div className="slide">
-                            <Typography variant="h4">Select an Organ</Typography>
-                            <DoneAllIcon/>
+                            <div>
+                                <Typography variant="h4">Select an Organ</Typography>
+                                <DoneAllIcon/>
+                            </div>
+                            <Typography paragraph>You Can Choose From Five Organs</Typography>
                         </div>
                     </div>
                     <div className="slides">
                         <div className="slide">
-                            <Typography variant="h4">Wait for a Response</Typography>
-                            <HourglassTopIcon/>
+                            <div>
+                                <Typography variant="h4">Wait for a Response</Typography>
+                                <HourglassTopIcon/>
+                            </div>
+                            <Typography paragraph>We Will Contact You When There's a Possible Operation!</Typography>
                         </div>
                         <div className="slide">
                             <img src={how5}/>

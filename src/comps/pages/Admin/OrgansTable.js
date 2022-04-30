@@ -6,7 +6,7 @@ const { TableContainer, Table, TableHead, TableRow,
 } = require("@mui/material");
 
 
-function OrgansTable({organs,organsSort,setOrgansSort,setError,setErrorMsg,organsFilter,setOrgansFilter,setShow,setInfo}){
+function OrgansTable({organs,organsSort,setOrgansSort,setError,setErrorMsg,organsFilter,setOrgansFilter,setShow,setInfo,setLoading}){
 
 
     useEffect(()=>{
@@ -82,7 +82,9 @@ function OrgansTable({organs,organsSort,setOrgansSort,setError,setErrorMsg,organ
                                             {organ.rule === 0 ? "Not Known Yet" : organ.rule === 1 ? "Patient" : organ.rule === 2 ? "Donor" : null} 
                                         </TableCell>
                                         <DeleteCell endPoint="organs" id={organ._id} setError={setError} 
-                                        setErrorMsg={setErrorMsg} setItemsFilter={setOrgansFilter} items={organs}/>
+                                        setErrorMsg={setErrorMsg} setItemsFilter={setOrgansFilter} items={organs}
+                                        setLoading={setLoading}
+                                        />
                                         <EditCell item={organ} setShow={setShow} setInfo={setInfo}/>
                                     </TableRow>
                                 )) : <TableRow><TableCell>No Data</TableCell></TableRow> : 

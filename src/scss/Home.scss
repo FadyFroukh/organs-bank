@@ -40,15 +40,20 @@
                 margin: 15px 0;
                 .slide{
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    h4{
-                        margin-right: 10px;
-                    }
-                    svg{
-                        margin-top: 4px;
-                        font-size: 2.125rem;
-                    }
+                   div{
+                       display: flex;
+                       margin-bottom: 10px;
+                        h4{
+                            margin-right: 10px;
+                        }
+                        svg{
+                            margin-top: 4px;
+                            font-size: 2.125rem;
+                        }
+                   }
                     img{
                         width: 50%;
                         height: 100%;

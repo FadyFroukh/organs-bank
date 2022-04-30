@@ -255,7 +255,7 @@ app.delete("/hla/:id",(req,res)=>{
         var dbo = db.db("body-parts");
         dbo.collection("hla").findOneAndDelete({"_id":ObjectId(req.params.id)},function(err,result){
             if(err) throw err;
-            console.log(req.params.id);
+            console.log(result);
             res.send(result);
             db.close();
         })
@@ -319,7 +319,7 @@ app.put("/organs",function(req,res){
             organName:req.body.organName,
             rule:req.body.rule
         }}).then(result=>{
-            console.log(result.matchedCount);
+            console.log(result);
             res.send(result);
         }).catch(err=>{
             console.log("Update Failed");

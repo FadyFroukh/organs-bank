@@ -3,13 +3,16 @@ import "../scss/Header.css";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Facebook, LinkedIn, Twitter } from "@mui/icons-material";
+import Logo from "../images/logo.png"
 
 function Footer(){
     return(
         <footer>
             <div className="footer-part">
                 <Typography variant="h5">Human Organs co.</Typography>
-                <div>Logo</div>
+                <div className="logo">
+                    <img src={Logo} alt="Logo"/>
+                </div>
                 <Typography paragraph>
                     All right reserved for the year {new Date().getFullYear()} &copy;
                 </Typography>

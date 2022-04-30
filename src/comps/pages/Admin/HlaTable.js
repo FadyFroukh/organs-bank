@@ -5,7 +5,7 @@ const { TableContainer, Table, TableHead, TableRow,
     TableCell, TableBody, Paper, FormControl, InputLabel, Select, MenuItem 
 } = require("@mui/material");
 
-function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,setError,setShow,setInfo}){
+function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,setError,setShow,setInfo,setLoading}){
 
 
     useEffect(()=>{
@@ -62,7 +62,9 @@ function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,set
                                         {item.status === 0 ? "Pending" : item.status === 1 ? "Denied" : item.status === 2 ? "Accepted" : null} 
                                     </TableCell>
                                     <DeleteCell endPoint="hla" id={item._id} setError={setError} 
-                                        setErrorMsg={setErrorMsg} setItemsFilter={setHlaFilter} items={hla}/>
+                                    setErrorMsg={setErrorMsg} setItemsFilter={setHlaFilter} items={hla}
+                                    setLoading={setLoading}    
+                                    />
                                     <EditCell item={item} setShow={setShow} setInfo={setInfo}/>
                                 </TableRow>
                             )) : <TableRow><TableCell>No Data</TableCell></TableRow> : 

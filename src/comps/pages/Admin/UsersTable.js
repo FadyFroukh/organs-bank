@@ -4,7 +4,7 @@ import { FormControl,  InputLabel, MenuItem, Paper, Select, Table, TableBody, Ta
 import { useEffect } from "react";
 import DeleteCell from "./DeleteCell";
 import EditCell from "./EditCell";
-function UsersTable({users,usersSort,setUsersSort,setError,setErrorMsg,usersFilter,setUsersFilter,setShow,setInfo}){
+function UsersTable({users,usersSort,setUsersSort,setError,setErrorMsg,usersFilter,setUsersFilter,setShow,setInfo,setLoading}){
 
     useEffect(()=>{
         if(usersSort === ""){
@@ -107,7 +107,9 @@ function UsersTable({users,usersSort,setUsersSort,setError,setErrorMsg,usersFilt
                                         }
                                         </TableCell>
                                         <DeleteCell endPoint="users" id={user._id} setError={setError} 
-                                        setErrorMsg={setErrorMsg} setItemsFilter={setUsersFilter} items={users}/>
+                                        setErrorMsg={setErrorMsg} setItemsFilter={setUsersFilter} items={users}
+                                        setLoading={setLoading}
+                                        />
                                         <EditCell item={user} setShow={setShow} setInfo={setInfo}/>
                                     </TableRow>
                                 ))

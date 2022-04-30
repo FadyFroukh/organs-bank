@@ -10,6 +10,7 @@ function AdminSelect({data,setData}){
                     <MenuItem value="users">Users Data</MenuItem>
                     <MenuItem value="hla">HLA Data</MenuItem>
                     <MenuItem value="organs">Organs Data</MenuItem>
+                    <MenuItem value="questions">Questions</MenuItem>
                 </Select>
             </FormControl>
         </div>
