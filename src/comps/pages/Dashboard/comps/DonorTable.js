@@ -27,16 +27,22 @@ function DonorTable({hla,searchOrgans}){
                 Donor
             </TableCell>
             <TableCell>
-                {
-                    
-                }
-                <img src="images/kidney.png" alt="Organ Picture"/>
-            </TableCell>
-            <TableCell>
                 {hla.first}
             </TableCell>
             <TableCell>
                 {hla.second}
+            </TableCell>
+            <TableCell>
+                {hla.third}
+            </TableCell>
+            <TableCell>
+                {hla.fourth}
+            </TableCell>
+            <TableCell>
+                {hla.fifth}
+            </TableCell>
+            <TableCell>
+                {hla.sixth}
             </TableCell>
         </TableRow>
         ))

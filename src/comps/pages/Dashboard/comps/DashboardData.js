@@ -27,7 +27,7 @@ function DashboardData({
            <DashboardDate username={user.firstName} setIsLogged={setIsLogged} setShowProfile={setShowProfile}/>
             {
                 error ? <DashboardError error={error} setError={setError}/> : show ? 
-                <DashboardForm setShow={setShow} setError={setError}/> : 
+                <DashboardForm setShow={setShow} setError={setError}  userId={user._id}/> : 
                 status === 0 ? <DashboardPending pendingError={pendingError} setPendingError={setPendingError}/> :
                 status === 1 ? <DashboardDenied deniedError={deniedError} setDeniedError={setDeniedError}/> : 
                 status === 2 ? <DashboardAccepted user={user} setError={setError} 

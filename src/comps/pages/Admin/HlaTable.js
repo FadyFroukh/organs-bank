@@ -1,11 +1,15 @@
 import { useEffect } from "react";
 import DeleteCell from "./DeleteCell";
+import DownloadCell from "./DownloadCell";
 import EditCell from "./EditCell";
+
 const { TableContainer, Table, TableHead, TableRow, 
     TableCell, TableBody, Paper, FormControl, InputLabel, Select, MenuItem 
 } = require("@mui/material");
 
-function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,setError,setShow,setInfo,setLoading}){
+function HlaTable({
+    hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,setError,setShow,setInfo,setLoading
+}){
 
 
     useEffect(()=>{
@@ -19,7 +23,6 @@ function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,set
             setHlaFilter(hla);
         }
     },[hlaSort,hla])
-
 
     return(
         <>
@@ -48,11 +51,12 @@ function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,set
                            <TableCell>Status</TableCell>
                            <TableCell>Delete</TableCell>
                            <TableCell>Edit</TableCell>
+                           <TableCell>PDF File</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
                         {
-                            hla.length > 0 ? hlaFilter.length > 0 ? hlaFilter?.map(item=>(
+                            hla.length > 0 ? hlaFilter.length > 0 ? hlaFilter?.map((item,index)=>(
                                 <TableRow key={item._id}>
                                     <TableCell>{item._id}</TableCell>
                                     <TableCell>{item.userId}</TableCell>
@@ -66,6 +70,7 @@ function HlaTable({hla,hlaSort,setHlaSort,hlaFilter,setHlaFilter,setErrorMsg,set
                                     setLoading={setLoading}    
                                     />
                                     <EditCell item={item} setShow={setShow} setInfo={setInfo}/>
+                                    <DownloadCell fileName={item.fileName}/>
                                 </TableRow>
                             )) : <TableRow><TableCell>No Data</TableCell></TableRow> : 
                             <TableRow><TableCell>No Data</TableCell></TableRow> 

@@ -1,6 +1,6 @@
 import { InputLabel,Input,Button, Typography } from "@mui/material";
 import axios from "axios";
-import bcryptjs from "bcryptjs";
+import md5 from "md5";
 import {useEffect, useState} from 'react';
 import AdminError from "../../AdminError";
 import AdminSuccess from "../../AdminSuccess";
@@ -49,29 +49,27 @@ function AddUser({setLoading}){
                 })
 
                 if(error === false){
-                    bcryptjs.hash(password, 10 , function(err, hash) {
-    
-                        axios.post("http://localhost:4000/users",{
-                            firstName,
-                            lastName,
-                            password:hash,
-                            phone,
-                            address,
-                            email,
-                            age,
-                            id,
-                            sex,
-                            status,
-                            rule
-                        }).then(res=>{
-                            setSuccess(true);
-                            setLoading(false);
-                        }).catch(err=>{
-                            setError(true);
-                            setErrorMsg("Connection Error");
-                        })
+
+                    axios.post("http://localhost:4000/users",{
+                        firstName,
+                        lastName,
+                        password:md5(password),
+                        phone,
+                        address,
+                        email,
+                        age,
+                        id,
+                        sex,
+                        status,
+                        rule
+                    }).then(res=>{
+                        setSuccess(true);
+                        setLoading(false);
+                    }).catch(err=>{
+                        setError(true);
+                        setErrorMsg("Connection Error");
+                    })
         
-                    });
                 }
 
             }).catch(err=>{

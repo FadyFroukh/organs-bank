@@ -9,7 +9,6 @@ import OrgansTable from "./OrgansTable";
 import AdminEditUser from "./AdminEdit";
 import AdminEditHla from "./AdminEditHla";
 import AdminEditOrgan from "./AdminEditOrgan";
-import { Typography } from "@mui/material";
 import AddUser from "./AddUser";
 import AddHla from "./AddHla";
 import AddOrgan from "./AddOrgan";
@@ -23,8 +22,7 @@ function Admin({isAdminLogged,setIsAdminLogged}){
     const [organsFilter,setOrgansFilter] = useState([]);
     const [usersFilter,setUsersFilter] = useState([]);
     const [hlaFilter,setHlaFilter] = useState();
-    const [questionsFilter,setQuestionsFilter] = useState([]);
-
+    const [questionsFilter , setQuestionsFilter] = useState();
 
     const [admin,setAdmin] = useState({});
 
@@ -110,8 +108,6 @@ function Admin({isAdminLogged,setIsAdminLogged}){
         })
     },[error,questions,questionsFilter])
     
-    
-
     return(
         <div className="admin-dashboard">
             <div className="admin-dashboard-data">
@@ -128,6 +124,7 @@ function Admin({isAdminLogged,setIsAdminLogged}){
                         setError={setError} setErrorMsg={setErrorMsg} hlaFilter={hlaFilter} setHlaFilter={setHlaFilter}
                         setShow={setShowHlaEdit} setInfo={setInfo} setLoading={setLoading}
                     /> : 
+
                     data === "organs" ? <OrgansTable organs={organs} organsSort={organsSort} setOrgansSort={setOrgansSort}
                         setError={setError} setErrorMsg={setErrorMsg} organsFilter={organsFilter} setOrgansFilter={setOrgansFilter}
                         setShow={setShowOrganEdit} setInfo={setInfo} setLoading={setLoading}

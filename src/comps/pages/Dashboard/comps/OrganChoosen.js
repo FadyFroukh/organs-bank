@@ -14,7 +14,7 @@ function OrganChoosen({organName,setOrganName,organs,rule,hla,organ,setOrgans}){
 
    const handleSearch = ()=>{
        setSearch(true);
-       setSearchOrgans(organs.filter(organ=>organ.organName === organName));
+       //setSearchOrgans(organs.filter(organ=>organ.organName === organName));
    }
 
     return(
@@ -45,15 +45,17 @@ function OrganChoosen({organName,setOrganName,organs,rule,hla,organ,setOrgans}){
                            <TableCell>Organ ID</TableCell>
                            <TableCell>Organ Name</TableCell>
                            <TableCell>User Type</TableCell>
-                           <TableCell>Organ Picture</TableCell>
+                           <TableCell>HLA-A*</TableCell>
+                           <TableCell>HLA-A*</TableCell>
                            <TableCell>HLA-B*</TableCell>
                            <TableCell>HLA-B*</TableCell>
-                           <TableCell>Match</TableCell>
+                           <TableCell>HLA-DRB1*</TableCell>
+                           <TableCell>HLA-DRB1*</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
                             {
-                               search ?  rule === 1  ? <DonorTable searchOrgans={searchOrgans} hla={hla}/> :
+                               search ?  rule === 2 ? <DonorTable searchOrgans={searchOrgans} hla={hla}/> :
                                <PatientTable searchOrgans={searchOrgans} hla={hla}/> :  
                                rule === 1  ? <DonorTable searchOrgans={searchOrgans} hla={hla}/> :
                                <PatientTable searchOrgans={searchOrgans} hla={hla}/>

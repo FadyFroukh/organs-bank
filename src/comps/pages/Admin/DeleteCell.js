@@ -12,6 +12,7 @@ function DeleteCell({endPoint,id,setError,setErrorMsg,setItemsFilter,items,setLo
             setLoading(false);
         }).catch(err=>{
             setError(true);
+            setLoading(false);
             setErrorMsg("Connection Error");
         })
     }

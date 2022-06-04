@@ -1,3 +1,5 @@
+const fs = require("fs");
+const multer = require("multer");
 const express = require("express");
 const mongo = require("mongodb");
 const cors = require("cors");
@@ -11,10 +13,8 @@ const Hla = require("./models/Hla");
 const Organ = require("./models/Organ");
 const Question = require("./models/Question");
 
-
 const ObjectId = mongo.ObjectId;
-const multer = require('multer');
-
+var fileName = "";
 
 const url = "mongodb+srv://Fadi:12345@body-parts.aovk2.mongodb.net/test";
 
@@ -25,22 +25,54 @@ app.use(cors({
   origin:"*"
 }))
 
-const storage = multer.diskStorage({
-    destination: (req, file, callBack) => {
-        callBack(null, 'uploads')
-    },
-    filename: (req, file, callBack) => {
-        callBack(null, `${file.originalname}`)
-    }
-  })
-let upload = multer({ dest: 'uploads/' })
 
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null,file.originalname);
+    fileName = "uploads/" + file.originalname
+  }
+})
+
+var upload = multer({ storage: storage }).single('file')
 
 
 app.get("/",(req,res)=>{
     res.json({
       "Welcome":"Welcome to the Body Parts API",
     })
+})
+
+
+
+app.post("/upload",(req,res)=>{
+    upload(req, res, function (err) {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).json(err)
+        } else if (err) {
+            return res.status(500).json(err)
+        }
+        const buff =  fs.readFileSync(fileName);
+        mongoClient.connect(url,function(err,db){
+            if (err) throw err;
+            var dbo = db.db("body-parts");
+            dbo.collection("uploads").insertOne({userId:req.body.userId,fileName:req.body.fileName,fileData:buff},function(err,result){
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+                db.close();
+            })
+        });
+    })
+})
+
+
+app.get("/pdf/:id",(req,res)=>{
+    res.setHeader('Content-Type', 'application/pdf')
+    res.sendFile("uploads/" + req.params.id, { root: __dirname })
 })
 
 //Users Endpoints
@@ -126,7 +158,6 @@ app.put("/users-data",(req,res)=>{
             id:req.body.id,
             status:req.body.status,
             rule:req.body.rule,
-            password:req.body.password
         }}).then(result=>{
             console.log(result.matchedCount);
             res.send(result);
@@ -175,6 +206,7 @@ app.get("/login",(req,res)=>{
         }).toArray(function(err, result) {
             if (err) throw err;
             res.send(result);
+            console.log(result);
             db.close();
         });
     }); 
@@ -187,7 +219,7 @@ app.get("/login",(req,res)=>{
 
 app.get("/hla",(req,res)=>{
     mongoClient.connect(url,function(err,db){
-        if (err) throw err;
+        if (err)  throw err;
         var dbo = db.db("body-parts");
         dbo.collection("hla").find({}).toArray(function(err,result){
             if (err) throw err;
@@ -197,14 +229,18 @@ app.get("/hla",(req,res)=>{
     })
 })
 
-app.post("/hla",upload.single("file"),(req,res)=>{
+app.post("/hla",(req,res)=>{
 
     const hla = new Hla({
         userId:req.body.userId,
         first:req.body.first,
         second:req.body.second,
+        third:req.body.third,
+        fourth:req.body.fourth,
+        fifth:req.body.fifth,
+        sixth:req.body.sixth,
         status:req.body.status,
-        file:req.body.file
+        fileName:req.body.fileName
     })
 
     mongoClient.connect(url,function(err,db){
@@ -212,7 +248,6 @@ app.post("/hla",upload.single("file"),(req,res)=>{
         var dbo = db.db("body-parts");
         dbo.collection("hla").insertOne(hla,function(err,result){
             if (err) throw err;
-            console.log(result);
             res.send(result);
             db.close();
         })
@@ -228,7 +263,6 @@ app.put("/hla",(req,res)=>{
             second:req.body.second,
             status:req.body.status
         }}).then(result=>{
-            console.log(result.matchedCount);
             res.send(result);
         }).catch(err=>{
             console.log("Update Failed");
@@ -242,7 +276,6 @@ app.get("/hla/:id",(req,res)=>{
         var dbo = db.db("body-parts");
         dbo.collection("hla").findOne({userId:req.params.id},function(err,result){
             if (err) throw err;
-            console.log(result);
             res.send(result);
             db.close();
         })
@@ -367,6 +400,19 @@ app.post("/question",(req,res)=>{
         if(err) throw err;
         var dbo = db.db("body-parts");
         dbo.collection("questions").insertOne(question,function(err,result){
+            if(err) throw err;
+            console.log(result);
+            res.send(result);
+            db.close();
+        })
+    })
+})
+
+app.delete("/question/:id",(req,res)=>{
+    mongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        var dbo = db.db("body-parts");
+        dbo.collection("questions").findOneAndDelete({"_id":ObjectId(req.params.id)},function(err,result){
             if(err) throw err;
             console.log(result);
             res.send(result);

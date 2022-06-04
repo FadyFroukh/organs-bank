@@ -1,10 +1,10 @@
 import { Button, Container, Input, InputLabel,Alert, AlertTitle, Collapse } from "@mui/material";
 import axios from "axios";
-import bcryptjs from "bcryptjs";
 import { useState,useEffect } from "react";
 import "../../../scss/SignUp.css";
 import Footer from "../../Footer";
 import Header from "../Header";
+import md5 from "md5";
 
 function SignUp({click,setClick}){
 
@@ -53,28 +53,26 @@ function SignUp({click,setClick}){
                 setErrorMsg("Connection Error");
             })
 
-            bcryptjs.hash(password, 10 , function(err, hash) {
 
-                axios.post("http://localhost:4000/users",{
-                    firstName,
-                    lastName,
-                    password:hash,
-                    phone,
-                    address,
-                    email,
-                    age,
-                    id,
-                    sex,
-                    status,
-                    rule
-                }).then(res=>{
-                    setSuccess(true);
-                }).catch(err=>{
-                    setError(!error);
-                    setErrorMsg("Connection Error");
-                })
+            axios.post("http://localhost:4000/users",{
+                firstName,
+                lastName,
+                password:md5(password),
+                phone,
+                address,
+                email,
+                age,
+                id,
+                sex,
+                status,
+                rule
+            }).then(res=>{
+                setSuccess(true);
+            }).catch(err=>{
+                setError(!error);
+                setErrorMsg("Connection Error");
+            })
 
-            });
           
         }
     

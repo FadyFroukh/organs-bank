@@ -20,9 +20,30 @@ const hlaSchema = new mongoose.Schema({
         required:true,
         trim:true
     },
-    file:{
-        type:Buffer,
+    third:{
+        type:String,
         required:true,
+        trim:true
+    },
+    fourth:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    fifth:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    sixth:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    fileName:{
+        type:String,
+        required:true,
+        trim:true
     }
 })
 

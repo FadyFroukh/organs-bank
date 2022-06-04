@@ -4,9 +4,8 @@ import "../../../scss/SignIn.css";
 import { InputLabel,Input, Button,Collapse,Alert,AlertTitle } from "@mui/material";
 import { useState,useEffect } from "react";
 import axios from "axios";
-import bcryptjs from "bcryptjs";
 import Footer from "../../Footer";
-
+import md5 from "md5";
 function SignIn({click,setClick,isLogged,setIsLogged}){
 
 
@@ -41,26 +40,27 @@ function SignIn({click,setClick,isLogged,setIsLogged}){
             if(res.data.length > 0){
                 setError(false);
                 setStatus(res.data[0].status);
-                bcryptjs.compare(password, res.data[0].password, function(err, result) {
-                    if(result == true){
-                        if(res.data[0].status === 0){
-                            setPendingError(true);
-                            setStatusMsg("Account Pending Approval");
-                        }
-                        else if(res.data[0].status === 1) {
-                            setDeniedError(true);
-                            setErrorMsg("Account Denied");
-                        }
-                        else {
-                            localStorage.setItem("user", JSON.stringify(res.data[0]));
-                        }
-                    }else {
-                        setError(true);
-                        setPendingError(false);
-                        setDeniedError(false);
-                        setErrorMsg("Wrong Cridentials or Account Doesn't Exist");
+                
+                if (md5(password) == res.data[0].password){
+                    if(res.data[0].status === 0){
+                        setPendingError(true);
+                        setStatusMsg("Account Pending Approval");
                     }
-                });
+                    else if(res.data[0].status === 1) {
+                        setDeniedError(true);
+                        setErrorMsg("Account Denied");
+                    }
+                    else {
+                        localStorage.setItem("user", JSON.stringify(res.data[0]));
+                    }
+                }
+                else {
+                    setError(true);
+                    setPendingError(false);
+                    setDeniedError(false);
+                    setErrorMsg("Wrong Cridentials or Account Doesn't Exist");
+                }
+               
             }else {
                 setError(true);
                 setPendingError(false);
@@ -68,7 +68,8 @@ function SignIn({click,setClick,isLogged,setIsLogged}){
                 setErrorMsg("Wrong Cridentials or Account Doesn't Exist");
             }
         }).catch(err=>{
-            console.log("error");
+            setError(true);
+            setErrorMsg("Connection Error!");
         })
         
     }
@@ -93,7 +94,7 @@ function SignIn({click,setClick,isLogged,setIsLogged}){
                             : null
                     }
                     {
-                        status === 2 ? localStorage.setItem("isLogged",true) : null
+                        status === 2 ? localStorage.getItem("user") ? localStorage.setItem("isLogged",true)  : null : null
                     }
                     {
                         status === 1 ? <div className="error-box">

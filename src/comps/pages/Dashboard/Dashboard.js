@@ -25,6 +25,7 @@ function Dashboard({isLogged,setIsLogged}){
     useEffect(()=>{
         document.title = "Human Organs System - Dashboard"
         var isLogin = localStorage.getItem("isLogged");
+        setUser(JSON.parse(localStorage.getItem("user")));
         if(isLogin){
             setIsLogged(true);
         }else {
@@ -81,7 +82,7 @@ function Dashboard({isLogged,setIsLogged}){
             {
                 showProfile ? <DashboardProfile setShowProfile={setShowProfile} user={user}/> : null
             }
-            <DashboardData setIsLogged={setIsLogged} setShowProfile={setShowProfile}
+                <DashboardData setIsLogged={setIsLogged} setShowProfile={setShowProfile}
                 error={error} setError={setError} user={user} setUser={setUser}
                 show={show} setShow={setShow} hla={hla} setHla={setHla} status={status} setStatus={setStatus}
                 pendingError={pendingError} setPendingError={setPendingError} deniedError={deniedError} setDeniedError={setDeniedError}

@@ -25,6 +25,8 @@ function AdminEditHla({setShow,info,setLoading}){
             setLoading(false);
             setShow(false);
         }).catch(err=>{
+            setLoading(false);
+            setShow(false);
 
         })
     }

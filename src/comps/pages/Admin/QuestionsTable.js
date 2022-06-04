@@ -5,16 +5,16 @@ const { TableContainer, Table, TableHead, TableRow,
     TableCell, TableBody, Paper, FormControl, InputLabel, Select, MenuItem 
 } = require("@mui/material");
 
-function QuestionsTable(questions,questionsSort,setQuestionsSort,setError,setErrorMsg,
-    questionsFilter,setQuestionsFilter,setLoading){
+function QuestionsTable({questions,questionsSort,setQuestionsSort,setError,setErrorMsg,
+    questionsFilter,setQuestionsFilter,setLoading}){
 
         useEffect(()=>{
-            if(questionsSort === ""){
-                setQuestionsFilter(questions);
-            }else if (questionsSort === 0){
+            if (questionsSort === 0){
                 setQuestionsFilter([]);
             }else if (questionsSort === 1){
                 setQuestionsFilter([]);
+            }else{
+                setQuestionsFilter(questions);
             }
         },[questionsSort,questions])
 
@@ -23,10 +23,10 @@ function QuestionsTable(questions,questionsSort,setQuestionsSort,setError,setErr
             <div className="admin-filter">
                 <FormControl sx={{m:1,minWidth:200}}>
                     <InputLabel variant="outlined">Filter By</InputLabel>
-                <Select className="sort-data" value={""} onChange={(e)=>setQuestionsSort(e.target.value)}>
-                    <MenuItem value={0}>Last Added</MenuItem>
-                    <MenuItem value={1}>First Added</MenuItem>
-                </Select>
+                    <Select className="sort-data" value={questionsSort} onChange={(e)=>setQuestionsSort(e.target.value)}>
+                        <MenuItem value={0}>Last Added</MenuItem>
+                        <MenuItem value={1}>First Added</MenuItem>
+                    </Select>
                 </FormControl>
                 <div className="admin-reset">
                     <span onClick={()=>setQuestionsSort("")}>Reset Filter</span>
@@ -43,6 +43,7 @@ function QuestionsTable(questions,questionsSort,setQuestionsSort,setError,setErr
                                 <TableCell>Phone Number</TableCell>
                                 <TableCell>Message Topic</TableCell>
                                 <TableCell>Message Body</TableCell>
+                                <TableCell>Done</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -51,6 +52,18 @@ function QuestionsTable(questions,questionsSort,setQuestionsSort,setError,setErr
                                 questionsFilter?.map(question=>(
                                     <TableRow key={question._id}>
                                         <TableCell>{question._id}</TableCell>
+                                        <TableCell>{question.firstName}</TableCell>
+                                        <TableCell>{question.lastName}</TableCell>
+                                        <TableCell>{question.phone}</TableCell>
+                                        <TableCell>{question.messageTopic}</TableCell>
+                                        <TableCell className="question-cell">
+                                            <div className="question-body">
+                                                {question.messageBody}
+                                            </div>
+                                        </TableCell>
+                                        <DeleteCell endPoint="question" id={question._id} setError={setError} 
+                                        setErrorMsg={setErrorMsg} setItemsFilter={setQuestionsFilter} items={question}
+                                        setLoading={setLoading}/>
                                     </TableRow>
                                 )) : <TableRow><TableCell>No Data</TableCell></TableRow> : 
                                 <TableRow><TableCell>No Data</TableCell></TableRow> 

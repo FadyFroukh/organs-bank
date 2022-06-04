@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Typography , Box } from "@mui/material";
 import { useEffect } from "react";
 import "../../../scss/Home.css";
 import Container from "../../Container";
@@ -95,6 +95,68 @@ function Home({click,setClick}){
                         </div>
                         <div className="slide">
                             <img src={how5}/>
+                        </div>
+                    </div>
+                </div>
+                <div className="analytics">
+                    <Typography variant="h4" className="text-center">Analytics from the Site</Typography>
+                    <div className="analytics-body">
+                        <div className="analytics-data">
+                            <Box className="analytics-box"
+                                        sx={{
+                                            width: 200,
+                                            height: 200,
+                                            backgroundColor: '#aaa',
+                                            '&:hover': {
+                                            backgroundColor: '#444',
+                                            opacity: [0.9, 0.8, 0.7],
+                                            },
+                                        }}
+                                        
+                                    >
+                                        <Typography variant="h6">Donors</Typography>
+                                        <div className="count">
+                                            <b>256</b>
+                                        </div>
+                            </Box>
+                        </div>
+                        <div className="analytics-data">
+                            <Box className="analytics-box"
+                                sx={{
+                                    width: 200,
+                                    height: 200,
+                                    backgroundColor: '#aaa',
+                                    '&:hover': {
+                                    backgroundColor: '#444',
+                                    opacity: [0.9, 0.8, 0.7],
+                                    },
+                                }}
+                                
+                            >
+                                <Typography variant="h6">Patients</Typography>
+                                <div className="count">
+                                    <b>1125</b>
+                                </div>
+                            </Box>
+                        </div>
+                        <div className="analytics-data">
+                        <Box className="analytics-box"
+                            sx={{
+                                width: 200,
+                                height: 200,
+                                backgroundColor: '#aaa',
+                                '&:hover': {
+                                backgroundColor: '#444',
+                                opacity: [0.9, 0.8, 0.7],
+                                },
+                            }}
+                            
+                        >
+                            <Typography variant="h6">Operations Done</Typography>
+                            <div className="count">
+                                <b>23</b>
+                            </div>
+                        </Box>
                         </div>
                     </div>
                 </div>

@@ -105,6 +105,17 @@
         .table{
             height: 400px;
             overflow-y: auto;
+            .question-cell{
+                width: 200px;
+                max-height: 150px;
+                min-height: 100%;
+                overflow-y: scroll;
+                .question-body{
+                    width: 200px;
+                    max-height: 150px;
+                    min-height: 100%;
+                }
+            }
         }
         .admin-filter{
 

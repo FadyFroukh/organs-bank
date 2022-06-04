@@ -18,7 +18,6 @@ function Header({click,setClick}){
                     </Link>
                 </div>
                 <div className="header-menu">
-                    <Link to="/faq">FAQ</Link>
                     <Link to="/contact-us">Contact Us</Link>
                     <Link to="/about-us">About Us</Link>
                     <Link to="/sign-in">Sign In</Link>

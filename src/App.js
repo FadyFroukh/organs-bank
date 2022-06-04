@@ -4,7 +4,6 @@ import Home from './comps/pages/Home/Home';
 import SignIn from "./comps/pages/SignIn/SignIn";
 import SignUp from "./comps/pages/SignUp/SignUp";
 import Contact from "./comps/pages/Contact/Contact";
-import Faq from "./comps/pages/Faq/Faq";
 import Admin from "./comps/pages/Admin/Admin"
 import "../src/scss/utils.css";
 import HiddenMenu from './comps/HiddenMenu';
@@ -26,7 +25,6 @@ function App() {
             <Route path='/' element={<Home click={click} setClick={setClick}/>} />
             <Route path="/about-us" element={<About click={click} setClick={setClick}/>}/>
             <Route path="/contact-us" element={<Contact click={click} setClick={setClick}/>}/>
-            <Route path="/faq" element={<Faq click={click} setClick={setClick}/>}/>
             <Route path="/sign-in" element={<SignIn click={click} setClick={setClick} 
             isLogged={isLogged} setIsLogged={setIsLogged}/>}/>
             <Route path="/sign-up" element={<SignUp click={click} setClick={setClick}/>}/>
