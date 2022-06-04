@@ -12,6 +12,7 @@ function OrganPending({organName,setOrganName,setError,setOrgan,rule}){
             rule
         }).then(res=>{
             setOrgan(res.data);
+            window.location = "http://localhost:3000/dashboard";
         }).catch(err=>{
             setError(true);
         })

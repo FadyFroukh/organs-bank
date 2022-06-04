@@ -14,7 +14,7 @@ function OrganChoosen({organName,setOrganName,organs,rule,hla,organ,setOrgans}){
 
    const handleSearch = ()=>{
        setSearch(true);
-       //setSearchOrgans(organs.filter(organ=>organ.organName === organName));
+       setSearchOrgans(organs.filter(organ=>organ.organName === organName));
    }
 
     return(
